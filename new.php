@@ -27,9 +27,9 @@
         }
 
         if($num==$number){
-            echo $number "is an amstrong number"
+            echo "$number is an amstrong number"
         }else{
-             echo $number" is  not an amstrong number"
+             echo "$number is  not an amstrong number"
         }
     }
     ?>
