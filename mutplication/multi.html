@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+</head>
+<body>
+    
+    Enter no: <input type="text" id="num">
+    Enter the limit: <input type="text" id="limit">
+    <button onclick="getMult()">Submit</button><br>
+    <div id="result"></div>
+    
+    <script>
+        function getMult() {
+            var num = document.getElementById("num").value;
+            var limit = document.getElementById("limit").value;
+            
+            // Ensure limit is a valid number
+            if (!num || !limit || isNaN(num) || isNaN(limit)) {
+                alert("Please enter valid numbers.");
+                return;
+            }
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result").innerHTML = this.responseText;
+                }
+            };
+
+            // Send both number and limit to the server
+            xmlhttp.open("POST", "multi.php", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("number=" + num + "&limit=" + limit);  // Pass both parameters
+        }
+    </script>
+</body>
+</html>
