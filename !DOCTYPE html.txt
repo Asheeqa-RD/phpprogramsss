@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,36 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiplication Table</title>
 </head>
-<body><center>
-    <h1>Multiplication Table </h1>
-    Enter no: <input type="text" id="num">
-    Enter the limit: <input type="text" id="limit">
+<body>
+    Enter number: <input type="text" id="num">
     <button onclick="getMult()">Submit</button><br>
     <div id="result"></div>
     
     <script>
         function getMult() {
             var num = document.getElementById("num").value;
-            var limit = document.getElementById("limit").value;
-            
-            // Ensure limit is a valid number
-            if (!num || !limit || isNaN(num) || isNaN(limit)) {
-                alert("Please enter valid numbers.");
-                return;
-            }
-
             var xmlhttp = new XMLHttpRequest();
+            
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("result").innerHTML = this.responseText;
                 }
             };
-
-            // Send both number and limit to the server
-            xmlhttp.open("POST", "multi.php", true);
+            
+            xmlhttp.open("POST", "index.php", true); // The POST request is sent to the same file (index.php)
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("number=" + num + "&limit=" + limit);  // Pass both parameters
+            xmlhttp.send("number=" + num); // Send the number via POST
         }
-    </script></center>
+    </script>
 </body>
 </html>
+
+<?php
+    // Check if a POST request was made and 'number' is set
+    if (isset($_POST['number'])) {
+        $number = intval($_POST['number']);
+        $output = "<h3>Multiplication Table for {$number}:</h3><ul>";
+
+        // Generate the multiplication table (1 to 10)
+        for ($i = 1; $i <= 10; $i++) {
+            $result = $number * $i;
+            $output .= "<li>{$number} x {$i} = {$result}</li>";
+        }
+
+        $output .= "</ul>";
+        echo $output;
+    }
+?>

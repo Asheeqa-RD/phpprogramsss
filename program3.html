@@ -31,7 +31,8 @@
         input[type="number"],
         input[type="email"],
         input[type="date"],
-        textarea {
+        textarea,
+        select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -74,6 +75,14 @@
             <label for="dob">Date of Birth:</label>
             <input type="date" id="dob" name="dob" required>
 
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
             <label for="father_name">Father's Name:</label>
             <input type="text" id="father_name" name="father_name" required>
 
@@ -98,26 +107,5 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-
-   
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--
