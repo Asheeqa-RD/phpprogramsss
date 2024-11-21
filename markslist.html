@@ -1,9 +1,16 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark List</title>
+</head>
 <body>
-    <h1>Marksheet</h1>
-    <form method="POST" action="marklist.php">
-        Regno: <input type="text" name="rollno" />
-        <input type="submit" value="Get Result">
+    <h1>Enter Student Roll No</h1>
+    <form action="marklist.php" method="post">
+        <label for="rollno">Roll No:</label>
+        <input type="text" name="rollno" id="rollno" required><br><br>
+        <input type="submit" value="Get Mark List">
     </form>
 </body>
 </html>

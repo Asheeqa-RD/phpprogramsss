@@ -1,54 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marksheet</title>
-</head>
-<body>
-    <h1>Marksheet</h1>
-    <form method="POST" action="">
-        <label for="txtreg">Regno:</label>
-        <input type="text" name="txtreg" id="txtreg" required />
-        <input type="submit" value="Get Result" />
-    </form>
+<?php
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get the roll_no from the form
+    $rollno = $_POST['rollno'];
 
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Fetch user input and sanitize it
-        $rg = mysqli_real_escape_string($con, $_POST['txtreg']);
+    // Database connection
+    $db = pg_connect("host=localhost port=5433 dbname=postgres user=postgres password=devagiri");
 
-        // Establish the connection to the database
-        $con = mysqli_connect("localhost", "root", "root", "phpdatabase");
-
-        // Check connection
-        if (!$con) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-
-        // Query to fetch the student record based on rollno
-        $qry = "SELECT * FROM student WHERE rollno = '$rg'";
-
-        // Execute the query
-        $result = mysqli_query($con, $qry);
-
-        // Check if any results were returned
-        if (mysqli_num_rows($result) > 0) {
-            // Output each row of results
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<br>\n";
-                echo "Roll No: " . htmlspecialchars($row['rollno']) . "<br>";
-                echo "Name: " . htmlspecialchars($row['name']) . "<br>";
-                echo "Marks: " . htmlspecialchars($row['mark']) . "<br>";
-                echo "Grade: " . htmlspecialchars($row['grade']) . "<br>";
-            }
-        } else {
-            echo "No results found for Regno: " . htmlspecialchars($rg);
-        }
-
-        // Close the database connection
-        mysqli_close($con);
+    if (!$db) {
+        die("Error in connection: " . pg_last_error());
     }
-    ?>
-</body>
-</html>
+
+    // Query to get the student's details based on roll_no
+    $query = "SELECT * FROM student WHERE rollno = $1";
+    $result = pg_prepare($db, "student_query", $query);
+
+    if (!$result) {
+        die("Error in query preparation: " . pg_last_error());
+    }
+
+    // Execute the prepared query
+    $result = pg_execute($db, "student_query", array($rollno));
+
+    // Check if the student exists
+    $count = pg_num_rows($result);
+    if ($count == 1) {
+        // Fetch student data
+        $row = pg_fetch_assoc($result);
+        echo "<h1>Student Mark List</h1>";
+        echo "<p><strong>Roll No:</strong> " . $row['rollno'] . "</p>";
+        echo "<p><strong>Name:</strong> " . $row['name'] . "</p>";
+        echo "<p><strong>Marks:</strong> " . $row['marks'] . "</p>";
+        echo "<p><strong>Grade:</strong> " . $row['grade'] . "</p>";
+    } else {
+        echo "<h1>No student found with Roll No: $rollno</h1>";
+    }
+
+    // Close the connection
+    pg_close($db);
+}
+?>
