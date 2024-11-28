@@ -20,10 +20,16 @@ $rs = pg_execute($db, "login_query", array($name, $password));
 // Check if the query returns exactly one row
 $count = pg_num_rows($rs);
 
+echo "<div style='text-align:center;'>"; // Center the content
+
 if ($count == 1) {
     echo "<h1>Welcome, $name</h1>";
 } else {
     echo "<h1>Incorrect username or password</h1>";
 }
 
+echo "</div>"; // Close the div
+
+// Close the database connection
+pg_close($db);
 ?>
