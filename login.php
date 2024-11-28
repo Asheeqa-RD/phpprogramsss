@@ -23,7 +23,7 @@ $count = pg_num_rows($rs);
 echo "<div style='text-align:center;'>"; // Center the content
 
 if ($count == 1) {
-    echo "<h1>Welcome, $name</h1>";
+    echo "<h1>Welcome, $name,You have loginned Succsessfully</h1>";
 } else {
     echo "<h1>Incorrect username or password</h1>";
 }
