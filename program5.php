@@ -4,35 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Classifier</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center; /* Center align text */
-        }
-        input[type="number"] {
-            padding: 5px;
-            margin-bottom: 10px;
-            width: 80%;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        .result {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-    </style>
 </head>
-<body>
+<body style="text-align: center;">
+
     <h1>Check Number Type</h1>
-    <form method="post">
-        <label for="number">Enter a number:</label><br>
-        <input type="number" id="number" name="number" required><br>
-        <input type="submit" value="Check">
+
+    <form method="post" align="center">
+        <label for="number">Enter a number:</label><br><br>
+        <input type="number" id="number" name="number" required><br><br>
+        <input type="submit" value="Check"><br><br>
     </form>
 
     <?php
@@ -56,8 +36,9 @@
             $result = "The number $number is a Deficient number.";
         }
 
-        echo "<div class='result'>$result</div>";
+        echo "<div><strong>$result</strong></div>";
     }
     ?>
+
 </body>
 </html>

@@ -4,86 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Pay Slip Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .field {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"], input[type="number"], select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 4px;
-            width: 100%;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Employee Pay Slip Generator</h2>
-        <form method="post" action="pay.php">
-            <div class="field">
-                <label for="name">Employee Name:</label>
-                <input type="text" name="name" id="name" required>
-            </div>
-            <div class="field">
-                <label for="basic">Basic Salary:</label>
-                <input type="number" name="basic" id="basic" step="0.01" required>
-            </div>
-            <div class="field">
-                <label for="designation">Designation:</label>
-                <select name="designation" id="designation" required>
-                    <option value="Manager">Manager</option>
-                    <option value="Supervisor">Supervisor</option>
-                    <option value="Clerk">Clerk</option>
-                    <option value="Peon">Peon</option>
-                </select>
-            </div>
-            <input type="submit" value="Generate Pay Slip">
-        </form>
-    </div>
+
+    <h2 style="text-align: center;">Employee Pay Slip Generator</h2>
+    
+    <form method="post" action="pay.php" style="border: 1px solid #000; padding: 20px; width: 300px; margin: 0 auto;">
+        <div style="margin-bottom: 10px;">
+            <label for="name">Employee Name:</label>
+            <input type="text" name="name" id="name" required style="width: 100%; padding: 5px;">
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label for="basic">Basic Salary:</label>
+            <input type="number" name="basic" id="basic" step="0.01" required style="width: 100%; padding: 5px;">
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label for="designation">Designation:</label>
+            <select name="designation" id="designation" required style="width: 100%; padding: 5px;">
+                <option value="Manager">Manager</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="Clerk">Clerk</option>
+                <option value="Peon">Peon</option>
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Generate Pay Slip" style="width: 100%; padding: 10px;">
+        </div>
+    </form>
+
 </body>
 </html>

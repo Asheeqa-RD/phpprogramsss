@@ -61,90 +61,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pay Slip</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f4f4f9;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Pay Slip</h2>
-        <table>
-            <tr>
-                <th>Employee Name</th>
-                <td><?php echo htmlspecialchars($name); ?></td>
-            </tr>
-            <tr>
-                <th>Designation</th>
-                <td><?php echo htmlspecialchars($designation); ?></td>
-            </tr>
-            <tr>
-                <th>Basic Salary</th>
-                <td>₹<?php echo number_format($basic, 2); ?></td>
-            </tr>
-            <tr>
-                <th>HRA (25% of Basic)</th>
-                <td>₹<?php echo number_format($salary['hra'], 2); ?></td>
-            </tr>
-            <tr>
-                <th>Conveyance Allowance</th>
-                <td>₹<?php echo number_format($salary['conveyance'], 2); ?></td>
-            </tr>
-            <tr>
-                <th>Extra Allowance</th>
-                <td>₹<?php echo number_format($salary['extra'], 2); ?></td>
-            </tr>
-            <tr>
-                <th>Gross Salary</th>
-                <td>₹<?php echo number_format($salary['gross'], 2); ?></td>
-            </tr>
-            <tr>
-                <th>Income Tax</th>
-                <td>₹<?php echo number_format($salary['tax'], 2); ?></td>
-            </tr>
-            <tr>
-                <th>Net Salary</th>
-                <td>₹<?php echo number_format($salary['net'], 2); ?></td>
-            </tr>
-        </table>
-    </div>
+
+    <h2 style="text-align: center;">Pay Slip</h2>
+    
+    <table border="1" align="center" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Employee Name</th>
+            <td><?php echo htmlspecialchars($name); ?></td>
+        </tr>
+        <tr>
+            <th>Designation</th>
+            <td><?php echo htmlspecialchars($designation); ?></td>
+        </tr>
+        <tr>
+            <th>Basic Salary</th>
+            <td>₹<?php echo number_format($basic, 2); ?></td>
+        </tr>
+        <tr>
+            <th>HRA (25% of Basic)</th>
+            <td>₹<?php echo number_format($salary['hra'], 2); ?></td>
+        </tr>
+        <tr>
+            <th>Conveyance Allowance</th>
+            <td>₹<?php echo number_format($salary['conveyance'], 2); ?></td>
+        </tr>
+        <tr>
+            <th>Extra Allowance</th>
+            <td>₹<?php echo number_format($salary['extra'], 2); ?></td>
+        </tr>
+        <tr>
+            <th>Gross Salary</th>
+            <td>₹<?php echo number_format($salary['gross'], 2); ?></td>
+        </tr>
+        <tr>
+            <th>Income Tax</th>
+            <td>₹<?php echo number_format($salary['tax'], 2); ?></td>
+        </tr>
+        <tr>
+            <th>Net Salary</th>
+            <td>₹<?php echo number_format($salary['net'], 2); ?></td>
+        </tr>
+    </table>
+
 </body>
 </html>
